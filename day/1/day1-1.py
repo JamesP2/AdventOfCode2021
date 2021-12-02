@@ -17,17 +17,14 @@ def vprint(*x):
             print(x)
 
 
-lines = [line.rstrip("\n") for line in open(args.file)]
-
 previous_depth = None
 number_of_depth_increases = 0
-for line in lines:
-    current_depth = int(line)
+for current_depth in [int(line.rstrip("\n")) for line in open(args.file)]:
     if previous_depth is not None and current_depth > previous_depth:
         number_of_depth_increases += 1
 
     previous_depth = current_depth
 
-    vprint(line, number_of_depth_increases)
+    vprint(current_depth, number_of_depth_increases)
 
 print(number_of_depth_increases)
